@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Path:
+  = @version.path
+%p
+  %b Str ru:
+  = @version.str_ru
+%p
+  %b Str en:
+  = @version.str_en
+%p
+  %b Str de:
+  = @version.str_de
+%p
+  %b Str fr:
+  = @version.str_fr
+%p
+  %b Str tr:
+  = @version.str_tr
+%p
+  %b Version:
+  = @version.version
+
+= link_to 'Edit', edit_version_path(@version)
+\|
+= link_to 'Back', versions_path

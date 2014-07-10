@@ -1,0 +1,28 @@
+%table.table.table-striped
+  %tr
+    %th Path
+    %th Russian
+    %th English
+    %th German
+    %th French
+    %th Turkish
+    %th
+    %th
+    %th
+
+  - smart_listing.collection.each do |version|
+    %tr
+      %td= version.path
+      %td= version.str_ru
+      %td= version.str_en
+      %td= version.str_de
+      %td= version.str_fr
+      %td= version.str_tr
+      %td= link_to 'Show', version
+      %td= link_to 'Edit', edit_version_path(version)
+      %td= link_to 'Destroy', version, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+  = smart_listing.paginate
+  = smart_listing.pagination_per_page_links
