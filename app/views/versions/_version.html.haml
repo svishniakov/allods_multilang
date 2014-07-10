@@ -1,8 +1,8 @@
-%td= object.path
-%td= object.str_ru
-%td= object.str_en
-%td= object.str_de
-%td= object.str_fr
-%td= object.str_tr
-%td.actions= smart_listing_item_actions [ {name: :edit,    url: edit_version_path(object)},
-                                          {name: :destroy, url: version_path(object), confirmation: "Are you sure?"}]
+%td= version.path
+%td= version.str_ru
+%td= version.str_en
+%td= version.str_de
+%td= version.str_fr
+%td= version.str_tr
+%td.actions= smart_listing_item_actions [ {name: :edit,    url: edit_version_path(version)},
+                                          {name: :destroy, url: version_path(version), confirmation: "Are you sure?"}]

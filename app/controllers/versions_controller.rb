@@ -2,18 +2,12 @@ class VersionsController < ApplicationController
   include SmartListing::Helper::ControllerExtensions
   helper  SmartListing::Helper
 
-  before_action :set_version, only: [:show, :edit, :update, :destroy]
+  before_action :set_version, except: [:index, :new, :create, :upload]
 
   # GET /versions
   # GET /versions.json
   def index
-    @versions = Version.all
-    @versions = smart_listing_create(:versions, @versions, partial: "versions/listing")
-  end
-
-  # GET /versions/1
-  # GET /versions/1.json
-  def show
+    @versions = smart_listing_create(:versions, Version.all, partial: "versions/listing")
   end
 
   # GET /versions/new
@@ -28,31 +22,32 @@ class VersionsController < ApplicationController
   # POST /versions
   # POST /versions.json
   def create
-    @version = Version.new(version_params)
+    @version = Version.create(version_params)
 
-    respond_to do |format|
-      if @version.save
-        format.html { redirect_to @version, notice: 'Version was successfully created.' }
-        format.json { render :show, status: :created, location: @version }
-      else
-        format.html { render :new }
-        format.json { render json: @version.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @version.save
+    #     format.html { redirect_to @version, notice: 'Version was successfully created.' }
+    #     format.json { render :show, status: :created, location: @version }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @version.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /versions/1
   # PATCH/PUT /versions/1.json
   def update
-    respond_to do |format|
-      if @version.update(version_params)
-        format.html { redirect_to @version, notice: 'Version was successfully updated.' }
-        format.json { render :show, status: :ok, location: @version }
-      else
-        format.html { render :edit }
-        format.json { render json: @version.errors, status: :unprocessable_entity }
-      end
-    end
+    @version.update_attributes(version_params)
+    # respond_to do |format|
+    #   if @version.update(version_params)
+    #     format.html { redirect_to @version, notice: 'Version was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @version }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @version.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   def upload
@@ -72,10 +67,10 @@ class VersionsController < ApplicationController
   # DELETE /versions/1.json
   def destroy
     @version.destroy
-    respond_to do |format|
-      format.html { redirect_to versions_url, notice: 'Version was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to versions_url
+    # respond_to do |format|
+    #   format.html { redirect_to versions_url, notice: 'Version was successfully destroyed.' }
+    # end
   end
 
   private

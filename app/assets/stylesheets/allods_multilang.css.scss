@@ -15,3 +15,20 @@ $navbar-height:                   40px;
 .navbar-brand {
   font-weight: bold;
 }
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+td {
+  word-wrap:break-word ;
+}
+
+.path_column {
+  width: 200px;
+}
+
+.actions_column {
+  width: 50px;
+}

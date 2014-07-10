@@ -1,24 +1,23 @@
 %td{colspan: 8}
   = form_for object, url: object.new_record? ? versions_path : version_path(object),
-                     remote: true, html: {class: "form-horizontal"} do |f|
-  %p
-    Path:
-      = f.text_area :path
-  %p
-    Russian
-      = f.text_area :str_ru
-  %p
-    English
-      = f.text_area :str_en
-  %p
-    German
-      = f.text_area :str_de
-  %p
-    French
-      = f.text_area :str_fr
-  %p
-    Turkish
-      = f.text_area :str_tr
-  .actions
+                     remote: true, html: {class: "form-group"} do |f|
+    %p
+      Path
+      = f.text_area :path, class: "form-control"
+    %p
+      Russian
+      = f.text_area :str_ru, class: "form-control"
+    %p
+      English
+      = f.text_area :str_en, class: "form-control"
+    %p
+      German
+      = f.text_area :str_de, class: "form-control"
+    %p
+      French
+      = f.text_area :str_fr, class: "form-control"
+    %p
+      Turkish
+      = f.text_area :str_tr, class: "form-control"
     = f.submit "Save", class: "btn btn-primary"
-  %button.btn.btn-link.cancel Cancel
+    %button.btn.btn-link.cancel Cancel

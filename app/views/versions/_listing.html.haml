@@ -1,18 +1,17 @@
 - unless smart_listing.empty?
   %table.table.table-bordered
     %thead
-      %th= smart_listing.sortable "Path", :path
+      %th.path_column= smart_listing.sortable "Path", :path
       %th= smart_listing.sortable "Russian", :str_ru
       %th= smart_listing.sortable "English", :str_en
       %th= smart_listing.sortable "German", :str_de
       %th= smart_listing.sortable "French", :str_fr
       %th= smart_listing.sortable "Turkish", :str_tr
-      %th
+      %th.actions_column
     %tbody
       - smart_listing.collection.each do |version|
-        %tr.editable
-          -# Version row partial
-          = smart_listing.render object: version, partial: "versions/version", locals: {object: version}
+        %tr.editable{data: {id: version.id}}
+          = smart_listing.render partial: "versions/version", locals: {version: version}
 
   = smart_listing.paginate
   = smart_listing.pagination_per_page_links
