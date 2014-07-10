@@ -11,21 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140710113618) do
+ActiveRecord::Schema.define(version: 20140710154801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "versions", force: true do |t|
-    t.string   "path"
-    t.string   "str_ru"
-    t.string   "str_en"
-    t.string   "str_de"
-    t.string   "str_fr"
-    t.string   "str_tr"
     t.string   "version"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "path"
+    t.text     "str_ru"
+    t.text     "str_en"
+    t.text     "str_de"
+    t.text     "str_fr"
+    t.text     "str_tr"
   end
+
+  add_index "versions", ["path"], name: "index_versions_on_path", using: :btree
+  add_index "versions", ["str_de"], name: "index_versions_on_str_de", using: :btree
+  add_index "versions", ["str_en"], name: "index_versions_on_str_en", using: :btree
+  add_index "versions", ["str_fr"], name: "index_versions_on_str_fr", using: :btree
+  add_index "versions", ["str_ru"], name: "index_versions_on_str_ru", using: :btree
+  add_index "versions", ["str_tr"], name: "index_versions_on_str_tr", using: :btree
 
 end
